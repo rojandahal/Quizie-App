@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Quizie</string>
+    <string name="just_a_logo">Just a logo</string>
+    <string name="true_text">True</string>
+    <string name="false_text">False</string>
+    <string name="question_name">Is my name Rojan Dahal?</string>
+    <string name="question_born">Was I born in BS 1999?</string>
+    <string name="question_live">Do I live in Biratnagar?</string>
+    <string name="question_study">I study in pec</string>
+    <string name="correct_answer">It\'s Correct answer!</string>
+    <string name="wrong_answer">Sorry, its wrong answer</string>
+    <string name="next">Next</string>
+</resources>
