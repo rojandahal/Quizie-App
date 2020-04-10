@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton nextButton;
     private int currentState=0;
     private TextView answerInfo;
+    private ImageButton previousButton;
 
     private Questions[] questions = new Questions[]{
             new Questions(R.string.question_name,true),
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        previousButton = findViewById(R.id.previous_button);
         buttonTrue = findViewById(R.id.true_button);
         nextButton = findViewById(R.id.next_button);
         answerInfo = findViewById(R.id.answer);
@@ -39,9 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //The code below will register the two buttons to onClick listener by implementing the onClickListener to the MainActivity
         //This can also be done to setOnClickListener to multiple buttons without writing different methods for different buttons
-       buttonTrue.setOnClickListener(this);
-       buttonFalse.setOnClickListener(this);
-       nextButton.setOnClickListener(this);
+
+        previousButton.setOnClickListener(this);
+        buttonTrue.setOnClickListener(this);
+        buttonFalse.setOnClickListener(this);
+        nextButton.setOnClickListener(this);
 
 
 
@@ -67,14 +71,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.next_button:
                 //This case gets the next button operation to choose next question either by answering or just skipping
                 nextButton();
+                break;
+            case R.id.previous_button:
+                //This case gets the previous button operation to choose the previous question
+                prevButton();
+                break;
         }
     }
 
-    private void nextButton(){  //This function will set the text view to next question Id represented by the current state integer
+    //This method is used to change the state number of the question and to update the question to previous question
+    private void prevButton(){
+        answerInfo.setText("");
+        if (currentState > 0) {
+            currentState = (currentState - 1) % questions.length;
+            updateQuestion();
+        }else
+            Toast.makeText(MainActivity.this,"No previous Question!",Toast.LENGTH_SHORT).show();
+    }
+
+    //This function will set the text view to next question Id represented by the current state integer
+    private void nextButton(){
 
         answerInfo.setText("");
         currentState = (currentState+1)%questions.length;
-        Log.d("Next","Current State Question: " + currentState);
+        updateQuestion();
+    }
+
+    //This method is used to update questions in the view and the log associated with question
+    private void updateQuestion(){
+        Log.d("QuestionState","Current Question state: " + currentState);
         questionView.setText(questions[currentState].getQuestionId());
     }
 

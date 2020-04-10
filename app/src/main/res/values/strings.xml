@@ -10,4 +10,5 @@
     <string name="correct_answer">It\'s Correct answer!</string>
     <string name="wrong_answer">Sorry, its wrong answer</string>
     <string name="next">Next</string>
+    <string name="previous">PREVIOUS</string>
 </resources>
